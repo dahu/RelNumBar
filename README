@@ -1,0 +1,22 @@
+RelNumBar
+=========
+
+Provides a vertically split window showing relative line numbers, allowing the
+display of both relative and normal line numbers at the same time.
+
+Requires Vim 7.3
+
+Activate it with :RelNumBar or <leader>N
+
+Status
+------
+
+A good start... Works for existing lines in a file, but doesn't automatically
+grown and shring the relativenumbers window as necessary. This is planned on
+the next release.
+
+Todo
+----
+
+* Grow / Shrink relativenumbers as necessary
+* Delete relativenumbers window when it's the last window standing
