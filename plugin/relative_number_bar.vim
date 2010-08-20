@@ -23,7 +23,7 @@ function! RelNumBar()
   let numlines = line('$')
 
   " create a new window above the current one and make it a 'scratch' buffer
-  vnew
+  vnew RelNumBar
   setlocal buftype=nofile
   setlocal bufhidden=hide
   setlocal noswapfile
@@ -34,6 +34,7 @@ function! RelNumBar()
   vertical resize 5
   setlocal relativenumber
   setlocal cursorline
+  setlocal foldcolumn=0
 
   let g:relnumbar_window = winnr()
   let g:relnumbar_buffer = bufnr('%')
@@ -65,6 +66,11 @@ function! UpdateRelNumBarCursor()
   vertical resize 5
   call setpos('.', [0, newline, 0, 0])
   exe thiswin . "wincmd w"
+  " Kill vim if RelNumBar's window is the last standing.
+  if bufwinnr(bufnr('%')) == 1 && winnr('$') == 1 && bufname('%') == 'RelNumBar'
+    exit
+  endif
+
 endfunction
 
 function! RelNumBarReOpen()
